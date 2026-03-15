@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | GearSport{% else %}GearSport — Recensioni Attrezzatura Sportiva{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Recensioni indipendenti su smartwatch, home gym, e-bike e sport. Guide all'acquisto aggiornate.{% endif %}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+  <meta name="robots" content="{% if page.noindex %}noindex,nofollow{% else %}index,follow{% endif %}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}GearSport{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Recensioni indipendenti su attrezzatura sportiva.{% endif %}">
+  <meta property="og:type" content="{% if page.layout == 'articolo' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="GearSport">
+  {% if page.layout == 'articolo' %}
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"{{ page.title | escape }}","description":"{{ page.description | escape }}","datePublished":"{{ page.date | date_to_xmlschema }}","author":{"@type":"Organization","name":"GearSport"},"publisher":{"@type":"Organization","name":"GearSport"}}</script>
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-logo">Gear<span>Sport</span></a>
+    <ul class="nav-links">
+      <li><a href="{{ '/categoria/smartwatch/' | relative_url }}">Smartwatch & GPS</a></li>
+      <li><a href="{{ '/categoria/home-gym/' | relative_url }}">Home Gym</a></li>
+      <li><a href="{{ '/categoria/ebike/' | relative_url }}">Bici & E-Bike</a></li>
+      <li><a href="{{ '/categoria/running/' | relative_url }}">Running & Sport</a></li>
+      <li><a href="{{ '/categoria/outdoor/' | relative_url }}">Outdoor & Trekking</a></li>
+      <li><a href="{{ '/categoria/ski-snow/' | relative_url }}">Ski & Snow</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="{{ '/categoria/smartwatch/' | relative_url }}">Smartwatch & GPS</a>
+    <a href="{{ '/categoria/home-gym/' | relative_url }}">Home Gym</a>
+    <a href="{{ '/categoria/ebike/' | relative_url }}">Bici & E-Bike</a>
+    <a href="{{ '/categoria/running/' | relative_url }}">Running & Sport</a>
+    <a href="{{ '/categoria/outdoor/' | relative_url }}">Outdoor & Trekking</a>
+    <a href="{{ '/categoria/ski-snow/' | relative_url }}">Ski & Snow</a>
+  </div>
+</nav>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navMobile').classList.toggle('open');
+  });
+</script>

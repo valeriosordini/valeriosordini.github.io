@@ -1,0 +1,36 @@
+title: GearSport
+description: Recensioni indipendenti su attrezzatura sportiva, smartwatch, home gym, e-bike e sport invernali.
+url: "https://valeriosordini.github.io"
+baseurl: ""
+lang: it
+
+markdown: kramdown
+permalink: /articoli/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  categorie:
+    output: true
+    permalink: /categoria/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "articolo"
+  - scope:
+      path: ""
+      type: "categorie"
+    values:
+      layout: "categoria"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - TEMPLATE.md

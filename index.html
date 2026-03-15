@@ -1,0 +1,75 @@
+---
+layout: default
+title: GearSport — Recensioni Attrezzatura Sportiva
+description: Recensioni indipendenti su smartwatch, home gym, e-bike, running e sport invernali. Guide all'acquisto aggiornate senza pubblicità.
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">Recensioni Indipendenti</span>
+      <h1>La tua guida alla <em>migliore</em> attrezzatura sportiva</h1>
+      <p class="hero-desc">Recensioni approfondite e guide all'acquisto su smartwatch, home gym, e-bike, running e sport invernali. Senza pubblicità, senza compromessi.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-n">{{ site.posts | size }}+</div><div class="hero-stat-l">Articoli</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">100%</div><div class="hero-stat-l">Indipendenti</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">IT</div><div class="hero-stat-l">In italiano</div></div>
+      </div>
+    </div>
+    {% assign featured = site.posts | first %}
+    {% if featured %}
+    <a href="{{ featured.url | relative_url }}" style="text-decoration:none;">
+      <div class="hero-card">
+        <div class="hero-card-img">{% include cat-cover.html cat=featured.categoria %}</div>
+        <div class="hero-card-body">
+          <div class="hero-card-cat">In evidenza · {{ featured.categoria | replace:'-',' ' | capitalize }}</div>
+          <div class="hero-card-title">{{ featured.title }}</div>
+          <div class="hero-card-excerpt">{{ featured.excerpt | strip_html | truncate:100 }}</div>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Ultimi <span>Articoli</span></h2>
+      <a href="{{ '/archivio/' | relative_url }}" class="section-more">Vedi tutti →</a>
+    </div>
+    <div class="cards-grid">
+      {% for post in site.posts limit:6 %}
+      <div class="card">
+        <div class="card-img">{% include cat-cover.html cat=post.categoria %}</div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-cat">{{ post.categoria | replace:'-',' ' }}</span>
+            <span class="card-date">{{ post.date | date:"%d/%m/%Y" }}</span>
+          </div>
+          <div class="card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+          <div class="card-excerpt">{{ post.excerpt | strip_html | truncate:110 }}</div>
+          <div class="card-foot">
+            <a href="{{ post.url | relative_url }}" class="card-read">Leggi →</a>
+            {% if post.tempo_lettura %}<span class="card-time">{{ post.tempo_lettura }} min</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-inner">
+    <div class="section-head"><h2 class="section-title">Esplora le <span>Categorie</span></h2></div>
+    <div class="cat-grid">
+      <a href="{{ '/categoria/smartwatch/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="smartwatch" %}</div><div class="cat-name">Smartwatch & GPS</div><div class="cat-sub">Garmin · Apple Watch · Polar</div></div></a>
+      <a href="{{ '/categoria/home-gym/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="home-gym" %}</div><div class="cat-name">Home Gym</div><div class="cat-sub">Pesi · Cardio · Accessori</div></div></a>
+      <a href="{{ '/categoria/ebike/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="ebike" %}</div><div class="cat-name">Bici & E-Bike</div><div class="cat-sub">Elettriche · MTB · Computer</div></div></a>
+      <a href="{{ '/categoria/running/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="running" %}</div><div class="cat-name">Running & Sport</div><div class="cat-sub">Scarpe · GPS · Abbigliamento</div></div></a>
+      <a href="{{ '/categoria/outdoor/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="outdoor" %}</div><div class="cat-name">Outdoor & Trekking</div><div class="cat-sub">Zaini · Scarpe · GPS outdoor</div></div></a>
+      <a href="{{ '/categoria/ski-snow/' | relative_url }}" style="text-decoration:none;"><div class="cat-card"><div class="cat-icon">{% include cat-icon.html cat="ski-snow" %}</div><div class="cat-name">Ski & Snow</div><div class="cat-sub">Sci · Snowboard · Caschi</div></div></a>
+    </div>
+  </div>
+</section>

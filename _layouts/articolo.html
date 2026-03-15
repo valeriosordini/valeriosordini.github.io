@@ -1,0 +1,62 @@
+{% include header.html %}
+
+<div class="art-cover">
+  {% include cat-cover.html cat=page.categoria %}
+  <div class="art-cover-fade"></div>
+</div>
+
+<div class="art-hero">
+  <div class="art-hero-inner">
+    <div class="breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span>›</span>
+      {% if page.categoria %}
+      <a href="{{ '/categoria/' | append: page.categoria | append: '/' | relative_url }}">{{ page.categoria | replace:'-',' ' | capitalize }}</a>
+      <span>›</span>
+      {% endif %}
+      <span>{{ page.title | truncate:50 }}</span>
+    </div>
+    {% if page.categoria %}<span class="art-badge">{{ page.categoria | replace:'-',' ' | upcase }}</span>{% endif %}
+    <h1 class="art-title">{{ page.title }}</h1>
+    <div class="art-meta">
+      <span>{{ page.date | date: "%d %B %Y" }}</span>
+      {% if page.tempo_lettura %}<span>{{ page.tempo_lettura }} min di lettura</span>{% endif %}
+      {% if page.aggiornato %}<span>Aggiornato: {{ page.aggiornato }}</span>{% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="art-wrap">
+  <div class="art-layout">
+    <article class="art-content">
+      {{ content }}
+      <div class="disclaimer">
+        <strong>Trasparenza:</strong> Alcuni link in questo articolo sono affiliati. Se acquisti tramite questi link riceviamo una piccola commissione, senza costi aggiuntivi per te. Questo non influenza le nostre valutazioni.
+      </div>
+    </article>
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <div class="sidebar-title">Articoli Correlati</div>
+        <ul class="sidebar-list">
+          {% assign related = site.posts | where:"categoria",page.categoria | limit:6 %}
+          {% for post in related %}{% unless post.url == page.url %}<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>{% endunless %}{% endfor %}
+          {% assign others = site.posts | limit:6 %}
+          {% for post in others %}{% unless post.url == page.url or post.categoria == page.categoria %}<li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>{% endunless %}{% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <div class="sidebar-title">Categorie</div>
+        <ul class="sidebar-list">
+          <li><a href="{{ '/categoria/smartwatch/' | relative_url }}">Smartwatch & GPS</a></li>
+          <li><a href="{{ '/categoria/home-gym/' | relative_url }}">Home Gym</a></li>
+          <li><a href="{{ '/categoria/ebike/' | relative_url }}">Bici & E-Bike</a></li>
+          <li><a href="{{ '/categoria/running/' | relative_url }}">Running & Sport</a></li>
+          <li><a href="{{ '/categoria/outdoor/' | relative_url }}">Outdoor & Trekking</a></li>
+          <li><a href="{{ '/categoria/ski-snow/' | relative_url }}">Ski & Snow</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% include footer.html %}

@@ -1,0 +1,37 @@
+---
+layout: default
+title: Tutti gli Articoli
+description: Archivio completo di tutti gli articoli di GearSport su attrezzatura sportiva e fitness tech.
+---
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="{{ '/' | relative_url }}">Home</a> <span>›</span> <span>Archivio</span></div>
+    <h1 class="art-title">Tutti gli Articoli</h1>
+    <p style="color:var(--wdim);margin-top:10px;font-size:15px;">{{ site.posts | size }} articoli pubblicati</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="cards-grid">
+      {% for post in site.posts %}
+      <div class="card">
+        <div class="card-img">{% include article-svg.html slug=post.slug cat=post.categoria %}</div>
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-cat">{{ post.categoria | replace:'-',' ' }}</span>
+            <span class="card-date">{{ post.date | date:"%d/%m/%Y" }}</span>
+          </div>
+          <div class="card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+          <div class="card-excerpt">{{ post.excerpt | strip_html | truncate:110 }}</div>
+          <div class="card-foot">
+            <a href="{{ post.url | relative_url }}" class="card-read">Leggi →</a>
+            {% if post.tempo_lettura %}<span class="card-time">{{ post.tempo_lettura }} min</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
